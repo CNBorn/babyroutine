@@ -6,7 +6,16 @@ var Header = React.createClass({
     }
 });
 
-
+var SearchBar = React.createClass({
+    searchHandler: function() {
+        this.props.searchHandler(this.refs.searchKey.getDOMNode().value);
+    },
+    render: function () {
+        return (
+                <input type="search" ref="searchKey" onChange={this.searchHandler} />
+        );
+    }
+});
 
 
 var ActionListItem = React.createClass({
@@ -37,23 +46,26 @@ var ActionList = React.createClass({
 });
 
 var HomePage = React.createClass({
+    getInitialState: function() {
+        return {actions: []}
+    },
+    searchHandler:function(key) {
+        this.props.service.findByKind(key).done(function(result) {
+            this.setState({searchKey: key, actions: result});
+        }.bind(this));
+    },
     render: function () {
-        var actions = [
-            {kindName: 'Eat', desc: '90ml 10:30pm - 10:50pm'},
-            {kindName: 'Diaper', desc: '10:55pm'},
-            {kindName: 'Sleep', desc: '11:00pm - 12:00pm'},
-            {kindName: 'Poop', desc: '10:55pm'}
-        ];
         return (
                 <div>
                 <Header text="BabyRoutine"/>
-                <ActionList actionList={actions}/>
+                <SearchBar searchHandler={this.searchHandler}/>
+                <ActionList actionList={this.state.actions}/>
                 </div>
         );
     }
 });
 
 React.render(
-        <HomePage />,
+        <HomePage service={actionService} />,
     document.body
 );

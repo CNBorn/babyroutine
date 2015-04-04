@@ -65,7 +65,36 @@ var HomePage = React.createClass({
     }
 });
 
-React.render(
-        <HomePage service={actionService} />,
-    document.body
-);
+var ActionPage = React.createClass({
+    getInitialState: function() {
+        return {action: {}};
+    },
+    componentDidMount: function() {
+        this.props.service.findById(this.props.actionId).done(function(result) {
+            this.setState({action: result});
+        }.bind(this));
+    },
+    render: function () {
+        return (
+                <div>
+                <Header text={this.state.action.kindName} />
+                <h3>{this.state.action.desc}</h3>
+                </div>
+        );
+    }
+});
+
+router.addRoute('', function() {
+    React.render(
+            <HomePage service={actionService} />,
+        document.body
+    );
+});
+
+router.addRoute('action/:id', function(id) {
+    React.render(
+            <ActionPage actionId={id} service={actionService}/>,
+        document.body
+    );
+});
+router.start();

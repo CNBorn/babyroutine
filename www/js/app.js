@@ -16,7 +16,7 @@ var SearchBar = React.createClass({
     render: function () {
         return (
                 <div className="bar bar-standard bar-header-secondary">
-                <input type="search" ref="searchKey" onChange={this.searchHandler} />
+                <input type="search" ref="searchKey" onChange={this.searchHandler} value={this.props.searchKey} />
                 </div>
         );
     }
@@ -52,21 +52,13 @@ var ActionList = React.createClass({
 });
 
 var HomePage = React.createClass({
-    getInitialState: function() {
-        return {actions: []}
-    },
-    searchHandler:function(key) {
-        this.props.service.findByKind(key).done(function(result) {
-            this.setState({searchKey: key, actions: result});
-        }.bind(this));
-    },
     render: function () {
         return (
                 <div>
                 <Header text="BabyRoutine"/>
-                <SearchBar searchHandler={this.searchHandler}/>
+                <SearchBar searchKey={this.props.searchKey} searchHandler={this.props.searchHandler}/>
                 <div className="content">
-                <ActionList actionList={this.state.actions}/>
+                <ActionList actionList={this.props.actions}/>
                 </div>
                 </div>
         );
@@ -101,17 +93,33 @@ var ActionPage = React.createClass({
     }
 });
 
-router.addRoute('', function() {
-    React.render(
-            <HomePage service={actionService} />,
-        document.body
-    );
+
+var App = React.createClass({
+    getInitialState: function() {
+        return {
+            searchKey: '',
+            actions: [],
+            page: null
+        }
+    },
+    searchHandler:function(key) {
+        actionService.findByKind(key).done(function(actions) {
+            this.setState({searchKey: key, actions: actions, page: <HomePage searchKey={key} searchHandler={this.searchHandler} actions={actions}/>});
+        }.bind(this));
+    },
+    componentDidMount: function() {
+        router.addRoute('', function() {
+            this.setState({page: <HomePage searchKey={this.state.searchKey} searchHandler={this.searchHandler} actions={this.state.actions}/>});
+        }.bind(this));
+        router.addRoute('action/:id', function(id) {
+            this.setState({page: <ActionPage actionId={id} service={actionService}/>});
+        }.bind(this));
+        router.start();
+    },
+    render: function() {
+        return this.state.page;
+    }
+
 });
 
-router.addRoute('action/:id', function(id) {
-    React.render(
-            <ActionPage actionId={id} service={actionService}/>,
-        document.body
-    );
-});
-router.start();
+React.render(<App/>, document.body);

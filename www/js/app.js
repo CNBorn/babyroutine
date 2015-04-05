@@ -1,7 +1,10 @@
 var Header = React.createClass({
     render: function () {
         return (
+                <header className="bar bar-nav">
+                <a href="#" className={"icon icon-left-nav pull-left" + (this.props.back==="true"?"":" hidden")}></a>
                 <h1 className="title">{this.props.text}</h1>
+                </header>
         );
     }
 });
@@ -12,7 +15,9 @@ var SearchBar = React.createClass({
     },
     render: function () {
         return (
+                <div className="bar bar-standard bar-header-secondary">
                 <input type="search" ref="searchKey" onChange={this.searchHandler} />
+                </div>
         );
     }
 });
@@ -21,9 +26,10 @@ var SearchBar = React.createClass({
 var ActionListItem = React.createClass({
     render: function () {
         return (
-                <li>
+                <li className="table-view-cell media">
                 <a href={"#action/" + this.props.action.id}>
-                {this.props.action.kindName} {this.props.action.desc}
+                <img src={"http://placehold.it/75/f0f0f0/9e9e9e&text=" + this.props.action.kindName} />
+                {this.props.action.desc}
             </a>
                 </li>
         );
@@ -38,7 +44,7 @@ var ActionList = React.createClass({
             );
         });
         return (
-                <ul>
+                <ul className="table-view">
                 {actions}
             </ul>
         );
@@ -59,7 +65,9 @@ var HomePage = React.createClass({
                 <div>
                 <Header text="BabyRoutine"/>
                 <SearchBar searchHandler={this.searchHandler}/>
+                <div className="content">
                 <ActionList actionList={this.state.actions}/>
+                </div>
                 </div>
         );
     }
@@ -78,7 +86,16 @@ var ActionPage = React.createClass({
         return (
                 <div>
                 <Header text={this.state.action.kindName} />
-                <h3>{this.state.action.desc}</h3>
+                <div className="content">
+                <div className="card">
+                    <ul className="table-view">
+                        <li className="table-view-cell media">
+                            <img className="media-object big pull-left" src={"http://placehold.it/75/f0f0f0/9e9e9e&text=" + this.state.action.kindName} />
+                            <h1>{this.state.action.desc}</h1>
+                        </li>
+                    </ul>
+                </div>
+                </div>
                 </div>
         );
     }

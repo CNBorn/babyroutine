@@ -16,8 +16,9 @@ actionService = (function () {
 
         findByKind = function (searchKey) {
             var deferred = $.Deferred();
+            var targetKinds = searchKey.split(",").map(Number);
             var results = actions.filter(function (element) {
-                return element.kind == searchKey;
+                return targetKinds.indexOf(element.kind) > -1;
             });
             deferred.resolve(results);
             return deferred.promise();

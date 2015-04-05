@@ -9,6 +9,17 @@ var Header = React.createClass({
     }
 });
 
+var RecordFooter = React.createClass({
+    render: function () {
+        return (
+                <div className="bar bar-standard bar-footer">
+                    <button className="btn btn-primary btn-outlined">Button</button>
+                    <button className="btn btn-positive btn-outlined">Button</button>
+                </div>
+        );
+    }
+});
+
 var SearchBar = React.createClass({
     searchHandler: function() {
         this.props.searchHandler(this.refs.searchKey.getDOMNode().value);
@@ -17,6 +28,13 @@ var SearchBar = React.createClass({
         return (
                 <div className="bar bar-standard bar-header-secondary">
                 <input type="search" ref="searchKey" onChange={this.searchHandler} value={this.props.searchKey} />
+                <div className="segmented-control">
+                <a className="control-item active">One</a>
+                <a className="control-item">Two</a>
+                <a className="control-item">Three</a>
+                </div>
+
+
                 </div>
         );
     }
@@ -58,8 +76,9 @@ var HomePage = React.createClass({
                 <Header text="BabyRoutine"/>
                 <SearchBar searchKey={this.props.searchKey} searchHandler={this.props.searchHandler}/>
                 <div className="content">
-                <ActionList actionList={this.props.actions}/>
+                    <ActionList actionList={this.props.actions}/>
                 </div>
+                <RecordFooter />
                 </div>
         );
     }

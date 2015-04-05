@@ -20,6 +20,22 @@ var RecordFooter = React.createClass({
     }
 });
 
+var ActionSegmentButton = React.createClass({
+    getInitialState: function() {
+        return {selected: false};
+    },
+    handleClick: function(event) {
+        this.setState({selected: !this.state.selected});
+    },
+    render: function() {
+        var isSelected = this.state.selected ? ' active' : '';
+        return (
+                <a onClick={this.handleClick} className={"control-item" + isSelected}>{this.props.title}</a>
+        );
+    }
+});
+
+
 var SearchBar = React.createClass({
     searchHandler: function() {
         this.props.searchHandler(this.refs.searchKey.getDOMNode().value);
@@ -29,14 +45,13 @@ var SearchBar = React.createClass({
                 <div className="bar bar-standard bar-header-secondary">
                 <input type="search" ref="searchKey" onChange={this.searchHandler} value={this.props.searchKey} />
                 <div className="segmented-control">
-                <a className="control-item active">One</a>
-                <a className="control-item">Two</a>
-                <a className="control-item">Three</a>
+                <ActionSegmentButton title="Essential" />
+                <ActionSegmentButton title="All" />
                 </div>
 
 
-                </div>
-        );
+        </div>
+                );
     }
 });
 

@@ -20,21 +20,6 @@ var RecordFooter = React.createClass({
     }
 });
 
-var ActionSegmentButton = React.createClass({
-    getInitialState: function() {
-        return {selected: false};
-    },
-    handleClick: function(event) {
-        this.setState({selected: !this.state.selected});
-    },
-    render: function() {
-        var isSelected = this.state.selected ? ' active' : '';
-        return (
-                <a onClick={this.handleClick} className={"control-item" + isSelected}>{this.props.title}</a>
-        );
-    }
-});
-
 
 var SearchBar = React.createClass({
     searchHandler: function() {
@@ -44,13 +29,7 @@ var SearchBar = React.createClass({
         return (
                 <div className="bar bar-standard bar-header-secondary">
                 <input type="search" ref="searchKey" onChange={this.searchHandler} value={this.props.searchKey} />
-                <div className="segmented-control">
-                <ActionSegmentButton title="Essential" />
-                <ActionSegmentButton title="All" />
                 </div>
-
-
-        </div>
                 );
     }
 });

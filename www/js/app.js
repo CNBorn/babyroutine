@@ -18,6 +18,7 @@ var ActionListItem = React.createClass({
                 <a href={"#action/" + this.props.action.id}>
                 <img src={"http://placehold.it/75/f0f0f0/9e9e9e&text=" + this.props.action.kindName} />
                 {this.props.action.desc}
+                {this.props.action.id}
             </a>
                 </li>
         );

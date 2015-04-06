@@ -31,7 +31,8 @@ actionService = (function () {
                      2: 'Diaper',
                      3: 'Sleep',
                      4: 'Poop'};
-        storage.push('babyroutine-actions', {'kind': actionKind,
+        storage.push('babyroutine-actions', {'id': uuid.v1(),
+                                             'kind': actionKind,
                                              'kindName': kindNames[actionKind],
                                              'desc': desc});
     };

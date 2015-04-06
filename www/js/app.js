@@ -9,12 +9,37 @@ var Header = React.createClass({
     }
 });
 
+var AddActionForm = React.createClass({
+    handleSubmit: function(e) {
+        e.preventDefault();
+        var kind = 1;
+        var desc = React.findDOMNode(this.refs.desc).value.trim();
+        if (!kind || !desc) {
+            return;
+        }
+        this.props.onSubmit({actionKind: kind, desc: desc});
+        React.findDOMNode(this.refs.desc).value = '';
+        return;
+    },
+    render: function() {
+        return (
+                <form className="commentForm" onSubmit={this.handleSubmit}>
+                <input type="text" placeholder="Say something..." ref="text" />
+                <input type="submit" value="+" className="btn btn-positive" />
+                </form>
+        );
+    }
+});
+
+
 var RecordFooter = React.createClass({
+    addAction: function(kind, desc) {
+        actionService.addAction(kind, desc);
+    },
     render: function () {
         return (
                 <div className="bar bar-standard bar-footer">
-                    <button className="btn btn-primary btn-outlined">Button</button>
-                    <button className="btn btn-positive btn-outlined">Button</button>
+                <AddActionForm onSubmit={this.addAction} />
                 </div>
         );
     }

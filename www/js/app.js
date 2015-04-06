@@ -17,10 +17,13 @@ var ActionListItem = React.createClass({
                 <li className="table-view-cell media">
                 <a href={"#action/" + this.props.action.id}>
                 <img className="media-object big pull-left" src={"img/" + this.props.action.kindName.toLowerCase() + ".png"} />
-                {this.props.action.desc}
-                {this.props.action.id}
-                {moment(this.props.action.createdAt).fromNow()}
-            </a>
+                <div class="media-body">
+                    {moment(this.props.action.createdAt).format('HH:MM')} &nbsp;
+                    {this.props.action.props.volume}
+                    <p>{this.props.action.desc}</p>
+                    <h6>{this.props.action.id}</h6>
+                </div>
+                </a>
                 </li>
         );
     }

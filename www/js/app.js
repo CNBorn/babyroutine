@@ -46,6 +46,10 @@ var HomePage = React.createClass({
     componentDidMount: function(){
         this.searchHandler();
     },
+    handleSubmit: function(e) {
+        actionService.addAction(1, '120ml 00:00 - 00:25');
+        this.searchHandler();
+    },
     searchHandler:function(key) {
         key = '1,2,3,4';
         actionService.findByKind(key).done(function(actions) {
@@ -59,27 +63,14 @@ var HomePage = React.createClass({
                 <div className="content">
                     <ActionList actionList={this.state.actions}/>
                 </div>
-                <TestAddBtn />
-                </div>
-        );
-    }
-});
-// Merge TestAddBtn with HomePage
-var TestAddBtn = React.createClass({
-    handleSubmit: function(e) {
-        actionService.addAction(1, '120ml 00:00 - 00:25');
-    },
-    render: function() {
-        return (
                 <div className="bar bar-standard bar-footer">
-                <button className="btn btn-primary btn-block"
-            onClick={this.handleSubmit}>Button</button>
+                    <button className="btn btn-primary btn-block"
+                    onClick={this.handleSubmit}>Button</button>
+                </div>
                 </div>
         );
     }
 });
-
-
 
 var ActionPage = React.createClass({
     getInitialState: function() {

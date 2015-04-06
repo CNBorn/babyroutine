@@ -22,30 +22,6 @@ var TestAddBtn = React.createClass({
     }
 });
 
-
-var AddActionForm = React.createClass({
-    handleSubmit: function(e) {
-        e.preventDefault();
-        var kind = 1;
-        var desc = React.findDOMNode(this.refs.desc).value.trim();
-        if (!kind || !desc) {
-            return;
-        }
-        this.props.onSubmit({actionKind: kind, desc: desc});
-        React.findDOMNode(this.refs.desc).value = '';
-        return;
-    },
-    render: function() {
-        return (
-                <form className="commentForm" onSubmit={this.handleSubmit}>
-                <input type="text" placeholder="Say something..." ref="text" />
-                <input type="submit" value="+" className="btn btn-positive" />
-                </form>
-        );
-    }
-});
-
-
 var RecordFooter = React.createClass({
     addAction: function(kind, desc) {
         actionService.addAction(kind, desc);
@@ -54,7 +30,6 @@ var RecordFooter = React.createClass({
         return (
                 <div className="bar bar-standard bar-footer">
                 <TestAddBtn />
-                <AddActionForm onSubmit={this.addAction} />
                 </div>
         );
     }

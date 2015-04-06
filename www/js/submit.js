@@ -7,7 +7,12 @@ var SubmitEat = React.createClass({
                 <div className="content">
 
                 <form className="input-group">
-                <SubmitEatInput />
+
+                <div className="input-row">
+                <label>Volume(ml)</label>
+                <input type="text" placeholder="120" />
+                </div>
+
 
                 <div className="input-row">
                 <label>Duration(min)</label>
@@ -34,16 +39,4 @@ var SubmitEat = React.createClass({
                 </div>
         );
     }
-});
-
-var SubmitEatInput = React.createClass({
-    render: function (){
-        return (
-            <div className="input-row">
-            <label>Volume(ml)</label>
-            <input type="text" placeholder="120" />
-            </div>
-
-        );
-}
 });

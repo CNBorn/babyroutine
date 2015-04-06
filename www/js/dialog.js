@@ -21,7 +21,7 @@
     render: function() {
       return (
         <div className={this.state.className}>
-          <div className="modal-dialog">
+          <div className="modal">
             <div className="modal-content">
               <div className="modal-header">
                 <button type="button" className="close" aria-hidden="true" onClick={this.hide}>Ã—</button>

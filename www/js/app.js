@@ -15,10 +15,9 @@ var TestAddBtn = React.createClass({
     },
     render: function() {
         return (
-                <button className="btn btn-positive btn-outlined"
-                        onClick={this.handleSubmit}>
-                >Button</button>
-        )
+                <button className="btn btn-primary btn-block"
+                        onClick={this.handleSubmit}>Button</button>
+        );
     }
 });
 
@@ -32,20 +31,6 @@ var RecordFooter = React.createClass({
                 <TestAddBtn />
                 </div>
         );
-    }
-});
-
-
-var SearchBar = React.createClass({
-    searchHandler: function() {
-        this.props.searchHandler(this.refs.searchKey.getDOMNode().value);
-    },
-    render: function () {
-        return (
-                <div className="bar bar-standard bar-header-secondary">
-                <input type="search" ref="searchKey" onChange={this.searchHandler} value={this.props.searchKey} />
-                </div>
-                );
     }
 });
 
@@ -79,13 +64,24 @@ var ActionList = React.createClass({
 });
 
 var HomePage = React.createClass({
+    getInitialState: function() {
+        return {actions: []};
+    },
+    componentDidMount: function(){
+        this.searchHandler();
+    },
+    searchHandler:function(key) {
+        key = '1,2,3,4';
+        actionService.findByKind(key).done(function(actions) {
+            this.setState({actions: actions});
+        }.bind(this));
+    },
     render: function () {
         return (
                 <div>
                 <Header text="BabyRoutine"/>
-                <SearchBar searchKey={this.props.searchKey} searchHandler={this.props.searchHandler}/>
                 <div className="content">
-                    <ActionList actionList={this.props.actions}/>
+                    <ActionList actionList={this.state.actions}/>
                 </div>
                 <RecordFooter />
                 </div>
@@ -130,14 +126,9 @@ var App = React.createClass({
             page: null
         }
     },
-    searchHandler:function(key) {
-        actionService.findByKind(key).done(function(actions) {
-            this.setState({searchKey: key, actions: actions, page: <HomePage searchKey={key} searchHandler={this.searchHandler} actions={actions}/>});
-        }.bind(this));
-    },
     componentDidMount: function() {
         router.addRoute('', function() {
-            this.setState({page: <HomePage searchKey={this.state.searchKey} searchHandler={this.searchHandler} actions={this.state.actions}/>});
+            this.setState({page: <HomePage />});
         }.bind(this));
         router.addRoute('action/:id', function(id) {
             this.setState({page: <ActionPage actionId={id} service={actionService}/>});

@@ -76,7 +76,7 @@ var HomePage = React.createClass({
                 </div>
                 <div className="bar bar-standard bar-footer">
                     <a href="#addEat" className="">
-                        <button class="btn btn-positive">Hola</button>
+                        <button className="btn btn-positive">Hola</button>
                     </a>
                     <button className="btn btn-primary"
                     onClick={this.handleSubmit}>Button</button>

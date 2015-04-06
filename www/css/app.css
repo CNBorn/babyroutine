@@ -1,3 +1,8 @@
 .bar-nav ~ .content {
     padding: 28px 0;
 }
+
+.table-view .media-object.pull-left {
+    max-width: 70px;
+    max-height: 70px;
+}

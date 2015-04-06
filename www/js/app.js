@@ -16,7 +16,7 @@ var ActionListItem = React.createClass({
         return (
                 <li className="table-view-cell media">
                 <a href={"#action/" + this.props.action.id}>
-                <img src={"http://placehold.it/75/f0f0f0/9e9e9e&text=" + this.props.action.kindName} />
+                <img className="media-object big pull-left" src={"img/" + this.props.action.kindName.toLowerCase() + ".png"} />
                 {this.props.action.desc}
                 {this.props.action.id}
             </a>
@@ -90,7 +90,7 @@ var ActionPage = React.createClass({
                 <div className="card">
                     <ul className="table-view">
                         <li className="table-view-cell media">
-                            <img className="media-object big pull-left" src={"http://placehold.it/75/f0f0f0/9e9e9e&text=" + this.state.action.kindName} />
+                            <img className="media-object big pull-left" src={"img/" + this.state.action.kindName.toLowerCase() + ".png"} />
                             <h1>{this.state.action.desc}</h1>
                         </li>
                     </ul>

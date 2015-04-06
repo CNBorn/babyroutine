@@ -19,7 +19,7 @@ var ActionListItem = React.createClass({
                 <img className="media-object big pull-left" src={"img/" + this.props.action.kindName.toLowerCase() + ".png"} />
                 {this.props.action.desc}
                 {this.props.action.id}
-                {this.props.action.createdAt}
+                {moment(this.props.action.createdAt).fromNow()}
             </a>
                 </li>
         );
@@ -52,6 +52,7 @@ var HomePage = React.createClass({
     },
     componentDidMount: function(){
         this.searchHandler();
+        setInterval(this.searchHandler, 1000 * 10);
     },
     handleSubmit: function(e) {
         actionService.addAction(1, {volume: '120ml', duration:null}, '');

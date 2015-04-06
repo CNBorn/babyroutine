@@ -75,7 +75,10 @@ var HomePage = React.createClass({
                     <ActionList actionList={this.state.actions}/>
                 </div>
                 <div className="bar bar-standard bar-footer">
-                    <button className="btn btn-primary btn-block"
+                    <a href="#addEat" className="">
+                        <button class="btn btn-positive">Hola</button>
+                    </a>
+                    <button className="btn btn-primary"
                     onClick={this.handleSubmit}>Button</button>
                 </div>
                 </div>
@@ -126,6 +129,9 @@ var App = React.createClass({
         }.bind(this));
         router.addRoute('action/:id', function(id) {
             this.setState({page: <ActionPage actionId={id} service={actionService}/>});
+        }.bind(this));
+        router.addRoute('addEat', function() {
+            this.setState({page: <SubmitEat />});
         }.bind(this));
         router.start();
     },

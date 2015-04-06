@@ -19,6 +19,7 @@ var ActionListItem = React.createClass({
                 <img className="media-object big pull-left" src={"img/" + this.props.action.kindName.toLowerCase() + ".png"} />
                 {this.props.action.desc}
                 {this.props.action.id}
+                {this.props.action.createdAt}
             </a>
                 </li>
         );
@@ -26,6 +27,11 @@ var ActionListItem = React.createClass({
 });
 
 var ActionList = React.createClass({
+    componentDidUpdate: function() {
+        var node = this.getDOMNode();
+        node.scrollTop = node.scrollHeight;
+    },
+
     render: function () {
         var actions = this.props.actionList.map(function (action) {
             return (
@@ -48,7 +54,7 @@ var HomePage = React.createClass({
         this.searchHandler();
     },
     handleSubmit: function(e) {
-        actionService.addAction(1, '120ml 00:00 - 00:25');
+        actionService.addAction(1, {volume: '120ml', duration:null}, '');
         this.searchHandler();
     },
     searchHandler:function(key) {

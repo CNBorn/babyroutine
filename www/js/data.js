@@ -26,7 +26,7 @@ actionService = (function () {
         return deferred.promise();
     },
 
-    addAction = function (actionKind, desc) {
+    addAction = function (actionKind, props, desc) {
         var kindNames = {1: 'Eat',
                      2: 'Diaper',
                      3: 'Sleep',
@@ -34,8 +34,14 @@ actionService = (function () {
         storage.push('babyroutine-actions', {'id': uuid.v1(),
                                              'kind': actionKind,
                                              'kindName': kindNames[actionKind],
-                                             'desc': desc});
+                                             'props': props,
+                                             'desc': desc,
+                                             'createdAt': new Date()});
     };
+
+    // Debug Only, Clear Store
+    storage.empty();
+
 
     // The public API
     return {

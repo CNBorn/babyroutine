@@ -9,6 +9,20 @@ var Header = React.createClass({
     }
 });
 
+var TestAddBtn = React.createClass({
+    handleSubmit: function(e) {
+        actionService.addAction(1, '120ml 00:00 - 00:25');
+    },
+    render: function() {
+        return (
+                <button className="btn btn-positive btn-outlined"
+                        onClick={this.handleSubmit}>
+                >Button</button>
+        )
+    }
+});
+
+
 var AddActionForm = React.createClass({
     handleSubmit: function(e) {
         e.preventDefault();
@@ -39,6 +53,7 @@ var RecordFooter = React.createClass({
     render: function () {
         return (
                 <div className="bar bar-standard bar-footer">
+                <TestAddBtn />
                 <AddActionForm onSubmit={this.addAction} />
                 </div>
         );

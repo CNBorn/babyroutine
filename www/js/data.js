@@ -34,13 +34,13 @@ actionService = (function () {
         storage.push('babyroutine-actions', {'kind': actionKind,
                                              'kindName': kindNames[actionKind],
                                              'desc': desc});
-    },
+    };
 
     // The public API
     return {
         findByKind: findByKind,
         findById: findById,
-        addAction: addAction,
+        addAction: addAction
     };
 
 }());

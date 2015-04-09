@@ -1,3 +1,21 @@
+var Timer = React.createClass({
+    getInitialState: function() {
+        return {time: 0};
+    },
+    tick: function() {
+        var s = this.state.time + 1;
+        this.setState({time: s});
+    },
+    componentDidMount: function() {
+        this.timer = setInterval(this.tick, 1000);
+    },
+    render: function() {
+        return (
+        <span>{this.state.time}</span>);
+    }
+})
+
+
 var SubmitEat = React.createClass({
     render: function () {
         return (
@@ -24,6 +42,7 @@ var SubmitEat = React.createClass({
                 <ul className="table-view">
                 <li className="table-view-cell">
                 Live Timer for Duration Record
+                <Timer />
                 <div className="toggle active">
                 <div className="toggle-handle"></div>
                 </div>

@@ -18,7 +18,7 @@ var Timer = React.createClass({
 
 var SubmitEat = React.createClass({
     getInitialState: function() {
-        return {volume: '120'};
+        return {volume: 150};
     },
     handleSubmit: function(e) {
         actionService.addAction(1, {volume: this.state.volume + 'ml',
@@ -37,7 +37,9 @@ var SubmitEat = React.createClass({
 
                         <div className="input-row">
                         <label>Volume(ml)</label>
-                        <input type="text" placeholder="120"
+                        <label className="slidevol">{this.state.volume + "ml"}</label>
+                        <input id="slide" type="range"
+                        min="30" max="310" step="30"
                         value={this.state.volume} onChange={this.handleVolumeChange}/>
                         </div>
 

@@ -17,19 +17,29 @@ var Timer = React.createClass({
 
 
 var SubmitEat = React.createClass({
+    getInitialState: function() {
+        return {volume: '120'};
+    },
+    handleSubmit: function(e) {
+        actionService.addAction(1, {volume: this.state.volume + 'ml',
+                                    duration:null}, '');
+        router.load('');
+    },
+    handleVolumeChange: function(event) {
+        this.setState({volume: event.target.value});
+    },
     render: function () {
         return (
                 <div>
                 <Header text="Submit Eat"/>
+                    <div className="content">
+                    <form className="input-group">
 
-                <div className="content">
-
-                <form className="input-group">
-
-                <div className="input-row">
-                <label>Volume(ml)</label>
-                <input type="text" placeholder="120" />
-                </div>
+                        <div className="input-row">
+                        <label>Volume(ml)</label>
+                        <input type="text" placeholder="120"
+                        value={this.state.volume} onChange={this.handleVolumeChange}/>
+                        </div>
 
 
                 <div className="input-row">
@@ -49,10 +59,9 @@ var SubmitEat = React.createClass({
                 </li>
                 </ul>
 
-
-
-                <button className="btn btn-positive btn-block">Submit</button>
-
+                <button className="btn btn-positive btn-block"
+            onClick={this.handleSubmit}>
+                Submit</button>
 
                 </div>
                 </div>

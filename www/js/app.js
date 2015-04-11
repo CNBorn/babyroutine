@@ -18,10 +18,9 @@ var ActionListItem = React.createClass({
                 <a href={"#action/" + this.props.action.id}>
                 <img className="media-object big pull-left" src={"img/" + this.props.action.kindName.toLowerCase() + ".png"} />
                 <div class="media-body">
-                    {moment(this.props.action.createdAt).format('HH:mm')} &nbsp;
-                    {this.props.action.props.volume}
+                    <h1>{moment(this.props.action.createdAt).format('HH:mm')} &nbsp;
+                    {this.props.action.props.volume}</h1>
                     <p>{this.props.action.desc}</p>
-                    <h6>{this.props.action.id}</h6>
                 </div>
                 </a>
                 </li>

@@ -18,7 +18,7 @@ var ActionListItem = React.createClass({
                 <a href={"#action/" + this.props.action.id}>
                 <img className="media-object big pull-left" src={"img/" + this.props.action.kindName.toLowerCase() + ".png"} />
                 <div class="media-body">
-                    {moment(this.props.action.createdAt).format('HH:MM')} &nbsp;
+                    {moment(this.props.action.createdAt).format('HH:mm')} &nbsp;
                     {this.props.action.props.volume}
                     <p>{this.props.action.desc}</p>
                     <h6>{this.props.action.id}</h6>
@@ -56,10 +56,6 @@ var HomePage = React.createClass({
     componentDidMount: function(){
         this.searchHandler();
     },
-    handleSubmit: function(e) {
-        actionService.addAction(1, {volume: '120ml', duration:null}, '');
-        this.searchHandler();
-    },
     searchHandler:function(key) {
         key = '1,2,3,4';
         actionService.findByKind(key).done(function(actions) {
@@ -77,8 +73,6 @@ var HomePage = React.createClass({
                     <a href="#addEat" className="">
                         <button className="btn btn-positive">Hola</button>
                     </a>
-                    <button className="btn btn-primary"
-                    onClick={this.handleSubmit}>Button</button>
                 </div>
                 </div>
         );

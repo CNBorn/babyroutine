@@ -1,32 +1,29 @@
-var Timer = React.createClass({
+var SubmitEat = React.createClass({
     getInitialState: function() {
-        return {time: 0};
+        return {volume: 150,
+                time: 0,
+                timerEnabled: true};
     },
     tick: function() {
-        var s = this.state.time + 1;
-        this.setState({time: s});
+        if (this.state.timerEnabled){
+            var s = this.state.time + 1;
+            this.setState({time: s});
+        }
     },
     componentDidMount: function() {
         this.timer = setInterval(this.tick, 1000);
     },
-    render: function() {
-        return (
-        <span>{this.state.time}</span>);
-    }
-})
-
-
-var SubmitEat = React.createClass({
-    getInitialState: function() {
-        return {volume: 150,
-                timerEnabled: true};
-    },
     toggleTimer: function(event) {
         this.setState( { timerEnabled : !this.state.timerEnabled } );
+        this.setState( { time: 0});
     },
     handleSubmit: function(e) {
+        var duration = 0;
+        if (this.state.timerEnabled){
+            duration = this.state.time;
+        }
         actionService.addAction(1, {volume: this.state.volume + 'ml',
-                                    duration:null}, '');
+                                    duration: duration}, '');
         router.load('');
     },
     handleVolumeChange: function(event) {
@@ -49,21 +46,22 @@ var SubmitEat = React.createClass({
 
 
                 <div className="input-row">
-                <label>Duration(min)</label>
-                <input type="text" placeholder="10" />
+                <label>Duration(seconds)</label>
+                <input type="text" placeholder={this.state.time} readonly={this.state.timerEnabled ? "true": "false"} />
                 </div>
+
+
+                <ul className="table-view input-row">
+                                <li className="table-view-cell">
+<div className={"toggle " + (this.state.timerEnabled ? "active" :"")}>
+                    <div className="toggle-handle" onClick={this.toggleTimer}></div>
+                </div>
+</li>
+</ul>
+
+
 
                 </form>
-
-                <ul className="table-view">
-                <li className="table-view-cell">
-                Live Timer for Duration Record
-                <Timer />
-                <div className={"toggle " + (this.state.timerEnabled ? "active" :"")}>
-                <div className="toggle-handle" onClick={this.toggleTimer}></div>
-                </div>
-                </li>
-                </ul>
 
                 <button className="btn btn-positive btn-block"
             onClick={this.handleSubmit}>

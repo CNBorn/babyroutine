@@ -18,7 +18,11 @@ var Timer = React.createClass({
 
 var SubmitEat = React.createClass({
     getInitialState: function() {
-        return {volume: 150};
+        return {volume: 150,
+                timerEnabled: true};
+    },
+    toggleTimer: function(event) {
+        this.setState( { timerEnabled : !this.state.timerEnabled } );
     },
     handleSubmit: function(e) {
         actionService.addAction(1, {volume: this.state.volume + 'ml',
@@ -36,7 +40,7 @@ var SubmitEat = React.createClass({
                     <form className="input-group">
 
                         <div className="input-row">
-                        <label>Volume(ml)</label>
+                        <label>Volume</label>
                         <label className="slidevol">{this.state.volume + "ml"}</label>
                         <input id="slide" type="range"
                         min="30" max="310" step="30"
@@ -55,8 +59,8 @@ var SubmitEat = React.createClass({
                 <li className="table-view-cell">
                 Live Timer for Duration Record
                 <Timer />
-                <div className="toggle active">
-                <div className="toggle-handle"></div>
+                <div className={"toggle " + (this.state.timerEnabled ? "active" :"")}>
+                <div className="toggle-handle" onClick={this.toggleTimer}></div>
                 </div>
                 </li>
                 </ul>

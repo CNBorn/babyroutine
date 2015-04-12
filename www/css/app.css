@@ -10,6 +10,7 @@ label.slidevol {
 
 input#slide {
     width: 50%;
-    float: left;
+    float: right;
+    margin-right: 20px;
     padding: 10px 0px;
 }

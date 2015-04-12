@@ -17,7 +17,7 @@ actionService = (function () {
     },
 
     findByKind = function (searchKey) {
-        actions = storage.get('babyroutine-actions');
+        actions = storage.get('babyroutine-actions').reverse();
         var deferred = $.Deferred();
         var targetKinds = searchKey.split(",").map(Number);
         if(actions != null) {

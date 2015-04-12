@@ -70,7 +70,8 @@ var HomePage = React.createClass({
                 </div>
                 <div className="bar bar-standard bar-footer">
                     <a href="#addEat" className="">
-                        <button className="btn btn-positive">Hola</button>
+<button className="btn-positive">
+                <img src="img/Eat.png" width="30" height="30" /></button>
                     </a>
                 </div>
                 </div>

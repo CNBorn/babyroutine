@@ -40,7 +40,7 @@ var SubmitEat = React.createClass({
                         <label>Volume</label>
                         <label className="slidevol">{this.state.volume + "ml"}</label>
                         <input id="slide" type="range"
-                        min="30" max="310" step="30"
+                        min="30" max="240" step="30"
                         value={this.state.volume} onChange={this.handleVolumeChange}/>
                         </div>
 
@@ -52,7 +52,7 @@ var SubmitEat = React.createClass({
 
 
                 <ul className="table-view input-row">
-                                <li className="table-view-cell">
+                                <li className="table-view-cell input-row">
 <div className={"toggle " + (this.state.timerEnabled ? "active" :"")}>
                     <div className="toggle-handle" onClick={this.toggleTimer}></div>
                 </div>

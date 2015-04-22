@@ -1,33 +1,19 @@
 var SubmitEat = React.createClass({
     getInitialState: function() {
         return {volume: 150,
-                time: 0,
-                timerEnabled: true};
-    },
-    tick: function() {
-        if (this.state.timerEnabled){
-            var s = this.state.time + 1;
-            this.setState({time: s});
-        }
-    },
-    componentDidMount: function() {
-        this.timer = setInterval(this.tick, 1000);
-    },
-    toggleTimer: function(event) {
-        this.setState( { timerEnabled : !this.state.timerEnabled } );
-        this.setState( { time: 0});
+                duration: 0,
+               };
     },
     handleSubmit: function(e) {
-        var duration = 0;
-        if (this.state.timerEnabled){
-            duration = this.state.time;
-        }
         actionService.addAction(1, {volume: this.state.volume + 'ml',
-                                    duration: duration}, '');
+                                    duration: this.state.duration}, '');
         router.load('');
     },
     handleVolumeChange: function(event) {
         this.setState({volume: event.target.value});
+    },
+    handleDurationChange: function(event) {
+        this.setState({duration: event.target.value});
     },
     render: function () {
         return (
@@ -44,21 +30,13 @@ var SubmitEat = React.createClass({
                         value={this.state.volume} onChange={this.handleVolumeChange}/>
                         </div>
 
-
-                <div className="input-row">
-                <label>Duration(seconds)</label>
-                <input type="text" placeholder={this.state.time} readonly={this.state.timerEnabled ? "true": "false"} />
-                </div>
-
-
-                <ul className="table-view input-row">
-                                <li className="table-view-cell input-row">
-<div className={"toggle " + (this.state.timerEnabled ? "active" :"")}>
-                    <div className="toggle-handle" onClick={this.toggleTimer}></div>
-                </div>
-</li>
-</ul>
-
+                        <div className="input-row">
+                        <label>Duration</label>
+                        <label className="slidevol">{this.state.duration + "min"}</label>
+                        <input id="slide" type="range"
+                            min="0" max="30" step="5"
+                            value={this.state.duration} onChange={this.handleDurationChange}/>
+                        </div>
 
 
                 </form>

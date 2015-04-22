@@ -14,3 +14,8 @@ input#slide {
     margin-right: 20px;
     padding: 10px 0px;
 }
+
+input#time {
+    float: left;
+    width: 22%;
+}

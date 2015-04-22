@@ -2,6 +2,7 @@ var SubmitEat = React.createClass({
     getInitialState: function() {
         return {volume: 150,
                 duration: 0,
+                time: Date(),
                };
     },
     handleSubmit: function(e) {
@@ -15,12 +16,23 @@ var SubmitEat = React.createClass({
     handleDurationChange: function(event) {
         this.setState({duration: event.target.value});
     },
+    handleTimeChange: function(event) {
+        this.setState({time: event.target.value});
+    },
     render: function () {
         return (
                 <div>
                 <Header text="Submit Eat"/>
                     <div className="content">
                     <form className="input-group">
+                        <div className="input-row">
+                <label>Time</label>
+                <input id="time" type="time" step="60"
+                value={moment(this.state.time).format('HH:mm')}
+                onChange={this.handleTimeChange}/>
+                </div>
+
+
 
                         <div className="input-row">
                         <label>Volume</label>

@@ -2,7 +2,6 @@ actionService = (function () {
 
     var findById = function (id) {
         actions = storage.get('babyroutine-actions');
-        console.log(actions);
         var deferred = $.Deferred();
         var action = null;
         var l = actions.length;
@@ -14,6 +13,21 @@ actionService = (function () {
         }
         deferred.resolve(action);
         return deferred.promise();
+    },
+
+    removeById = function (id) {
+        actions = storage.get('babyroutine-actions');
+        var l = actions.length;
+        var delIndex = null;
+        for (var i = 0; i < l; i++) {
+            if (actions[i].id == id) {
+                delIndex = i;
+            }
+        }
+        if(delIndex) {
+            actions.pop(delIndex);
+        }
+        storage.set('babyroutine-actions', actions);
     },
 
     findByKind = function (searchKey) {
@@ -50,7 +64,8 @@ actionService = (function () {
     return {
         findByKind: findByKind,
         findById: findById,
-        addAction: addAction
+        addAction: addAction,
+        removeById: removeById
     };
 
 }());

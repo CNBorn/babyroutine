@@ -29,7 +29,7 @@ actionService = (function () {
         return deferred.promise();
     },
 
-    addAction = function (actionKind, props, desc) {
+    addAction = function (actionKind, props, time, desc) {
         var kindNames = {1: 'Eat',
                      2: 'Diaper',
                      3: 'Sleep',
@@ -39,7 +39,7 @@ actionService = (function () {
                                              'kindName': kindNames[actionKind],
                                              'props': props,
                                              'desc': desc,
-                                             'createdAt': new Date()});
+                                             'createdAt': time});
     };
 
     // Debug Only, Clear Store

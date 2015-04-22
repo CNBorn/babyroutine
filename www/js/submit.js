@@ -7,7 +7,8 @@ var SubmitEat = React.createClass({
     },
     handleSubmit: function(e) {
         actionService.addAction(1, {volume: this.state.volume + 'ml',
-                                    duration: this.state.duration}, '');
+                                    duration: this.state.duration},
+                                this.state.time, '');
         router.load('');
     },
     handleVolumeChange: function(event) {

@@ -13,13 +13,19 @@ var Header = React.createClass({
 
 var ActionListItem = React.createClass({
     render: function () {
+        var propsVolume, propsDuration = '';
+        if (this.props.action.props) {
+            propsVolume = this.props.action.props.volume;
+            propsDuration = this.props.action.props.duration + 'min';
+        }
         return (
                 <li className="table-view-cell media">
                 <a href={"#action/" + this.props.action.id}>
                 <img className="media-object big pull-left" src={"img/" + this.props.action.kindName.toLowerCase() + ".png"} />
                 <div class="media-body">
                     <h1>{moment(this.props.action.createdAt).format('HH:mm')} &nbsp;
-                    {this.props.action.props.volume}</h1>
+                    {propsVolume} &nbsp; {propsDuration}
+                    </h1>
                     <p>{this.props.action.desc}</p>
                 </div>
                 </a>

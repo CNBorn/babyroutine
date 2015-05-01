@@ -29,6 +29,7 @@ var ActionListItem = React.createClass({
                     <p>{this.props.action.desc}</p>
                 </div>
                 </a>
+                <span className="btn icon icon-close" onClick={this.props.onDeleteClick}></span>
                 </li>
         );
     }
@@ -40,10 +41,16 @@ var ActionList = React.createClass({
         node.scrollTop = node.scrollHeight;
     },
 
+    handleRemove: function(idx) {
+        actionService.removeById(idx);
+        console.log('triggered');
+    },
+
     render: function () {
-        var actions = this.props.actionList.map(function (action) {
+        var actions = this.props.actionList.map(function (action, i) {
             return (
-                    <ActionListItem key={action.id} action={action} />
+                    <ActionListItem key={action.id} action={action}
+                     onDeleteClick={this.handleRemove.bind(this, i)} />
             );
         });
         return (

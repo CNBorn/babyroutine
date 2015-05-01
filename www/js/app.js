@@ -12,6 +12,11 @@ var Header = React.createClass({
 
 
 var ActionListItem = React.createClass({
+    handleRemove: function(id) {
+        actionService.removeById(id);
+        console.log('triggered' + id);
+    },
+
     render: function () {
         var propsVolume, propsDuration = '';
         if (this.props.action.props) {
@@ -29,7 +34,7 @@ var ActionListItem = React.createClass({
                     <p>{this.props.action.desc}</p>
                 </div>
                 </a>
-                <span className="btn icon icon-close" onClick={this.props.onDeleteClick}></span>
+                <span className="btn icon icon-close" onClick={this.handleRemove.bind(this, this.props.action.id)}></span>
                 </li>
         );
     }
@@ -41,16 +46,11 @@ var ActionList = React.createClass({
         node.scrollTop = node.scrollHeight;
     },
 
-    handleRemove: function(idx) {
-        actionService.removeById(idx);
-        console.log('triggered');
-    },
-
     render: function () {
         var actions = this.props.actionList.map(function (action, i) {
             return (
                     <ActionListItem key={action.id} action={action}
-                     onDeleteClick={this.handleRemove.bind(this, i)} />
+                    />
             );
         });
         return (

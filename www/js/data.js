@@ -20,12 +20,12 @@ actionService = (function () {
         var l = actions.length;
         var delIndex = null;
         for (var i = 0; i < l; i++) {
-            if (actions[i].id == id) {
+            if (actions[i].id === id) {
                 delIndex = i;
             }
         }
-        if(delIndex) {
-            actions.pop(delIndex);
+        if(delIndex > -1) {
+            actions.splice(delIndex, 1);
         }
         storage.set('babyroutine-actions', actions);
     },

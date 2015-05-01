@@ -40,13 +40,23 @@ var ActionListItem = React.createClass({
 });
 
 var ActionList = React.createClass({
+    getInitialState: function() {
+        return {actions: []};
+    },
+    componentDidMount: function(){
+        key = '1,2,3,4';
+        actionService.findByKind(key).done(function(actions) {
+            this.setState({actions: actions});
+        }.bind(this));
+    },
+
     componentDidUpdate: function() {
         var node = this.getDOMNode();
         node.scrollTop = node.scrollHeight;
     },
 
     render: function () {
-        var actions = this.props.actionList.map(function (action, i) {
+        var actions = this.state.actions.map(function (action, i) {
             return (
                     <ActionListItem key={action.id} action={action}
                     />
@@ -61,21 +71,12 @@ var ActionList = React.createClass({
 });
 
 var HomePage = React.createClass({
-    getInitialState: function() {
-        return {actions: []};
-    },
-    componentDidMount: function(){
-        key = '1,2,3,4';
-        actionService.findByKind(key).done(function(actions) {
-            this.setState({actions: actions});
-        }.bind(this));
-    },
     render: function () {
         return (
                 <div>
                 <Header text="BabyRoutine"/>
                 <div className="content">
-                    <ActionList actionList={this.state.actions}/>
+                    <ActionList />
                 </div>
                 <div className="bar bar-standard bar-footer">
                     <a href="#addEat" className="">

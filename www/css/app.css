@@ -3,19 +3,31 @@
     max-height: 70px;
 }
 
+form.input-group {
+    margin-bottom: 30px;
+}
+
+.input-row {
+    height: initial;
+}
+
 label.slidevol {
+    float: none;
     width: 10%;
     padding: 10px 0px;
+    display: inline-block;
+    font-size: 1.6em;
 }
 
 input#slide {
-    width: 50%;
-    float: right;
+    width: 60%;
     margin-right: 20px;
     padding: 10px 0px;
 }
 
 input#time {
     float: left;
-    width: 22%;
+    width: 50%;
+    height: 2.8em;
+    font-size: 1.6em;
 }

@@ -14,7 +14,6 @@ var Header = React.createClass({
 var ActionListItem = React.createClass({
     handleRemove: function(id) {
         actionService.removeById(id);
-        console.log('triggered' + id);
     },
 
     render: function () {
@@ -66,9 +65,6 @@ var HomePage = React.createClass({
         return {actions: []};
     },
     componentDidMount: function(){
-        this.searchHandler();
-    },
-    searchHandler:function(key) {
         key = '1,2,3,4';
         actionService.findByKind(key).done(function(actions) {
             this.setState({actions: actions});

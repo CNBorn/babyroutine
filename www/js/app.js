@@ -18,6 +18,14 @@ var ActionListItem = React.createClass({
 
     render: function () {
         var propsVolume, propsDuration = '';
+        var today = moment();
+        itemMoment = moment(this.props.action.createdAt);
+        if (today.startOf('day').isSame(itemMoment.startOf('day'))) {
+            timeDiff = '';
+        } else {
+            timeDiff = itemMoment.from(today);
+        }
+
         if (this.props.action.props) {
             propsVolume = this.props.action.props.volume;
             propsDuration = this.props.action.props.duration + 'min';
@@ -28,8 +36,9 @@ var ActionListItem = React.createClass({
                 <img className="media-object big pull-left" src={"img/" + this.props.action.kindName.toLowerCase() + ".png"} />
                 <div class="media-body">
                     <h1>{moment(this.props.action.createdAt).format('HH:mm')} &nbsp;
-                    {propsVolume} &nbsp; {propsDuration}
+                    {propsVolume}
                     </h1>
+                    {timeDiff} {propsDuration}
                     <p>{this.props.action.desc}</p>
                 </div>
                 </a>

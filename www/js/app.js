@@ -3,6 +3,7 @@ var Header = React.createClass({
         return (
                 <header className="bar bar-nav">
                 <a href="#" className={"icon icon-left-nav pull-left" + (this.props.back==="true"?"":" hidden")}></a>
+                <a className="icon icon-gear pull-right"></a>
                 <h1 className="title">{this.props.text}</h1>
                 </header>
         );
@@ -87,12 +88,26 @@ var HomePage = React.createClass({
                 <div className="content">
                     <ActionList />
                 </div>
-                <div className="bar bar-standard bar-footer">
-                    <a href="#addEat" className="">
-<button className="btn-positive">
-                <img src="img/eat.png" width="30" height="30" /></button>
-                    </a>
-                </div>
+
+                <nav className="bar bar-tab">
+                <a className="tab-item active" href="#">
+                <span className="icon icon-home"></span>
+                <span className="tab-label">Home</span>
+                </a>
+                <a className="tab-item" href="#addEat">
+                <span className="icon icon-person"></span>
+                <span className="tab-label">Profile</span>
+                </a>
+                <a className="tab-item" href="#">
+                <span className="icon icon-star-filled"></span>
+                <span className="tab-label">Favorites</span>
+                </a>
+                <a className="tab-item" href="#">
+                <span className="icon icon-search"></span>
+                <span className="tab-label">Search</span>
+                </a>
+                </nav>
+
                 </div>
         );
     }

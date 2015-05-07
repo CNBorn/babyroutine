@@ -57,6 +57,7 @@ var SubmitEat = React.createClass({
                 Submit</button>
 
                 </div>
+                <NavBar page='addeat'/>
                 </div>
         );
     }

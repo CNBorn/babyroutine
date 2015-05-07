@@ -10,6 +10,26 @@ var Header = React.createClass({
     }
 });
 
+var NavBar = React.createClass({
+   render: function() {
+       return (
+               <nav className="bar bar-tab">
+               <a className={'tab-item ' + (this.props.page==="home"?"active":"")} href="#">
+               <span className="icon icon-home"></span>
+               <span className="tab-label">Home</span>
+               </a>
+               <a className={'tab-item ' + (this.props.page==="addeat"?"active":"")} href="#addEat">
+               <span className="icon icon-person"></span>
+               <span className="tab-label">Profile</span>
+               </a>
+               <a className="tab-item" href="#">
+               <span className="icon icon-search"></span>
+               <span className="tab-label">Search</span>
+               </a>
+               </nav>
+       );
+   }
+});
 
 
 var ActionListItem = React.createClass({
@@ -88,26 +108,7 @@ var HomePage = React.createClass({
                 <div className="content">
                     <ActionList />
                 </div>
-
-                <nav className="bar bar-tab">
-                <a className="tab-item active" href="#">
-                <span className="icon icon-home"></span>
-                <span className="tab-label">Home</span>
-                </a>
-                <a className="tab-item" href="#addEat">
-                <span className="icon icon-person"></span>
-                <span className="tab-label">Profile</span>
-                </a>
-                <a className="tab-item" href="#">
-                <span className="icon icon-star-filled"></span>
-                <span className="tab-label">Favorites</span>
-                </a>
-                <a className="tab-item" href="#">
-                <span className="icon icon-search"></span>
-                <span className="tab-label">Search</span>
-                </a>
-                </nav>
-
+                <NavBar page='home'/>
                 </div>
         );
     }

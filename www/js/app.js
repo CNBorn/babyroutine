@@ -34,7 +34,7 @@ var ActionListItem = React.createClass({
                 <li className="table-view-cell media">
                 <a href={"#action/" + this.props.action.id}>
                 <img className="media-object big pull-left" src={"img/" + this.props.action.kindName.toLowerCase() + ".png"} />
-                <div class="media-body">
+                <div className="media-body">
                     <h1>{moment(this.props.action.createdAt).format('HH:mm')} &nbsp;
                     {propsVolume}
                     </h1>

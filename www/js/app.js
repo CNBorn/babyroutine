@@ -83,7 +83,7 @@ var HomePage = React.createClass({
     render: function () {
         return (
                 <div>
-                <Header text="BabyRoutine"/>
+                <Header text="BabyRoutine" back="false"/>
                 <div className="content">
                     <ActionList />
                 </div>

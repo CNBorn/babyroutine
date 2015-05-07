@@ -16,7 +16,7 @@ var ActionPage = React.createClass({
 
         return (
                 <div>
-                <Header text={this.state.action.kindName} />
+                <Header text={this.state.action.kindName} back="true"/>
                 <div className="content">
                 <div className="card">
                 <ul className="table-view">

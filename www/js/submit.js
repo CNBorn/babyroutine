@@ -23,7 +23,7 @@ var SubmitEat = React.createClass({
     render: function () {
         return (
                 <div>
-                <Header text="Submit Eat"/>
+                <Header text="Submit Eat" back="true" />
                     <div className="content">
                     <form className="input-group">
                         <div className="input-row">

@@ -1,3 +1,7 @@
+.hidden {
+    display: none;
+}
+
 .table-view .media-object.pull-left {
     max-width: 70px;
     max-height: 70px;

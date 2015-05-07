@@ -1,7 +1,7 @@
 var SubmitEat = React.createClass({
     getInitialState: function() {
-        return {volume: 150,
-                duration: 0,
+        return {volume: 90,
+                duration: 5,
                 time: Date(),
                };
     },

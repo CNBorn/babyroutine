@@ -38,7 +38,7 @@ var ActionListItem = React.createClass({
 var Dashboard = React.createClass({
    render: function () {
        if(this.props.action) {
-           var eatSince = moment(this.props.action.createdAt).fromNow();
+           var eatSince = countdown(moment(this.props.action.createdAt), null, countdown.HOURS|countdown.MINUTES).toString();
            return (
                    <ul className="table-view">
                    <li className="table-view-cell media">
@@ -97,8 +97,9 @@ var ActionList = React.createClass({
         return (
 
                 <ul className="table-view">
-                {actions}
                 <Dashboard action={first} />
+                {actions}
+
                 </ul>
 
         );

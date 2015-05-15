@@ -1,3 +1,7 @@
+.bar-nav ~ .content {
+    padding-bottom: 44px;
+}
+
 .hidden {
     display: none;
 }

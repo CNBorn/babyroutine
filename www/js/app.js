@@ -25,7 +25,7 @@ var ActionListItem = React.createClass({
                     <h1>{moment(this.props.action.createdAt).format('HH:mm')} &nbsp;
                     {propsVolume}
                     </h1>
-                    {timeDiff} {propsDuration}
+                    {timeDiff}
                     <p>{this.props.action.desc}</p>
                 </div>
                 </a>

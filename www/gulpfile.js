@@ -5,19 +5,20 @@ var watchify = require('watchify');
 var reactify = require('reactify');
 
 var path = {
-    STATIC_DEPS: ['index.html', 'ratchet/', 'css/', 'img/', 'vendor/'],
+    STATIC_DEPS: ['js/**/*.*', 'index.html', 'ratchet/**/*.*', 'css/**/*.*',
+                  'img/**/*.*', 'vendor/**/*.*'],
     OUT: 'build.js',
     DEST: 'dist',
     ENTRY_POINT: './js/main.js'
 };
 
 gulp.task('copy', function(){
-    gulp.src(path.STATIC_DEPS)
+    gulp.src(path.STATIC_DEPS, { base: './' })
         .pipe(gulp.dest(path.DEST));
 });
 
 gulp.task('watch', function() {
-    gulp.watch(path.HTML, ['copy']);
+    gulp.watch(path.STATIC_DEPS, ['copy']);
 
     var watcher  = watchify(browserify({
         entries: [path.ENTRY_POINT],
@@ -42,9 +43,10 @@ var connect = require('gulp-connect');
 
 gulp.task('webserver', function() {
     connect.server({
+        root: 'dist',
         livereload: true,
         port: 8000
     });
 });
 
-gulp.task('default', ['webserver']);
+gulp.task('default', ['copy', 'webserver','watch']);

@@ -1,3 +1,5 @@
+var React = require('react');
+
 var App = React.createClass({
     getInitialState: function() {
         return {
@@ -24,4 +26,4 @@ var App = React.createClass({
 
 });
 
-React.render(<App/>, document.body);
+module.exports = App;

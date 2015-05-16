@@ -1,4 +1,4 @@
-var React = require('react');
+var React = require('../vendor/react');
 
 var app = require('./app.jsx');
 

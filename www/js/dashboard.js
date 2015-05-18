@@ -53,7 +53,11 @@ var Dashboard = React.createClass({
     render: function () {
 
         if(this.props.action) {
-            var eatSince = countdown(moment(this.props.action.createdAt), null, countdown.HOURS|countdown.MINUTES).toString();
+            var eatSince = countdown(moment(this.props.action.createdAt),
+                                     null,
+                                     countdown.HOURS,
+                                     null,
+                                     2).toString();
             return (
                     <li className="table-view-cell media">
                     <a className="navigate-right" href="#eat">

@@ -4,7 +4,7 @@ var Header = React.createClass({
     render: function () {
         return (
                 <header className="bar bar-nav">
-                <a href="#" className={"icon icon-left-nav pull-left" + (this.props.back==="true"?"":" hidden")}></a>
+                <a href="javascript:history.back();" className={"icon icon-left-nav pull-left" + (this.props.back==="true"?"":" hidden")}></a>
                 <a className="icon icon-gear pull-right"></a>
                 <h1 className="title">{this.props.text}</h1>
                 </header>

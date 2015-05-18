@@ -1,5 +1,10 @@
 var React = require('../vendor/react');
 
+var SubmitEat = require('./submit');
+var HomePage = require('./home');
+var Actionpage = require('./entity');
+var router = require('./router');
+
 var App = React.createClass({
     getInitialState: function() {
         return {

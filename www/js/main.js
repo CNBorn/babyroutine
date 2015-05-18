@@ -1,5 +1,5 @@
 var React = require('../vendor/react');
 
-var app = require('./app.jsx');
+var App = require('./app.jsx');
 
-React.render(app(), document.body);
+React.render(<App />, document.getElementById('root'));

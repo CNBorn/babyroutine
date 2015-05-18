@@ -1,3 +1,5 @@
+var React = require('../vendor/react');
+
 var Header = React.createClass({
     render: function () {
         return (
@@ -26,3 +28,8 @@ var NavBar = React.createClass({
        );
    }
 });
+
+module.exports = {
+    header: Header,
+    navbar: NavBar
+}

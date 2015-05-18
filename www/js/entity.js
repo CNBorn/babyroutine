@@ -1,3 +1,9 @@
+var React = require('../vendor/react');
+
+var Header = require('./components')['header'];
+var NavBar = require('./components')['navbar'];
+
+
 var ActionPage = React.createClass({
     getInitialState: function() {
         return {action: {}};
@@ -34,3 +40,5 @@ var ActionPage = React.createClass({
         );
     }
 });
+
+module.exports = ActionPage;

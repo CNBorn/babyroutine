@@ -1,3 +1,8 @@
+var React = require('../vendor/react');
+
+var Header = require('./components')['header'];
+var NavBar = require('./components')['navbar'];
+
 var SubmitEat = React.createClass({
     getInitialState: function() {
         return {volume: 90,
@@ -62,3 +67,5 @@ var SubmitEat = React.createClass({
         );
     }
 });
+
+module.exports = SubmitEat;

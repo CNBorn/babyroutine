@@ -1,3 +1,9 @@
+var React = require('../vendor/react');
+
+var Header = require('./components')['header'];
+var NavBar = require('./components')['navbar'];
+
+
 var ActionListItem = React.createClass({
     handleRemove: function(id) {
         actionService.removeById(id);
@@ -120,3 +126,5 @@ var HomePage = React.createClass({
         );
     }
 });
+
+module.exports = HomePage;

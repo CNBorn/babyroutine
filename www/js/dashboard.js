@@ -10,7 +10,7 @@ var GraphEntryTab = React.createClass({
                 <li className="table-view-cell">
                 <a className="navigate-right" href="#sleep">
                 View Graph
-            </a>
+                </a>
                 </li></ul>
         );
     }
@@ -49,7 +49,7 @@ var SleepEntryTab = React.createClass({
 });
 
 
-var Dashboard = React.createClass({
+var EatEntryTab = React.createClass({
     render: function () {
 
         if(this.props.action) {
@@ -87,45 +87,27 @@ var FrontPage = React.createClass({
         }.bind(this));
     },
     render: function () {
-
-        var dashboard = function(){
-            return (
-                    <Dashboard action={this.state.action[0]}
-                    />
-            );
-        }
         var first = this.state.actions[0];
-        if(this.state.action) {
-            var dashboard = function(){
-                return (<Dashboard action={this.state.action[0]}/>);
-            }
-        }
-
         var today = moment().format('YYYY-MM-DD');
 
         return (
                 <div>
                 <Header text="BabyRoutine" back="false"/>
+
                 <div className="content">
 
                 <ul className="table-view">
                 <li className="table-view-divider">{today}</li>
-
-                <Dashboard action={first} />
+                <EatEntryTab action={first}/>
                 <SleepEntryTab />
-
-
-
                 <HistoryEntryTab />
                 <GraphEntryTab />
-
                 </ul>
 
                 </div>
                 <NavBar page='home'/>
+
                 </div>
-
-
         );
     }
 });

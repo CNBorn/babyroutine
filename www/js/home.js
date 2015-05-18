@@ -41,28 +41,6 @@ var ActionListItem = React.createClass({
     }
 });
 
-var Dashboard = React.createClass({
-   render: function () {
-       if(this.props.action) {
-           var eatSince = countdown(moment(this.props.action.createdAt), null, countdown.HOURS|countdown.MINUTES).toString();
-           return (
-                   <ul className="table-view">
-                   <li className="table-view-cell media">
-                   <a className="navigate-right">
-                   <img className="media-object pull-left" src="http://placehold.it/42x42" />
-                   <div className="media-body">
-                   {eatSince}
-                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore. Lorem ipsum dolor sit amet.</p>
-                   </div>
-                   </a>
-                   </li></ul>
-           );
-       } else {
-           return (<span />);
-       }
-   }
-});
-
 var ActionList = React.createClass({
     getInitialState: function() {
         return {actions: []};
@@ -87,25 +65,9 @@ var ActionList = React.createClass({
             );
         });
 
-        //var dashboard = function(){return};
-        var dashboard = function(){
-            return (
-                    <Dashboard action={this.state.action[0]}
-                    />
-            );
-        }
-        var first = this.state.actions[0];
-        if(this.state.action) {
-            var dashboard = function(){
-                return (<Dashboard action={this.state.action[0]}/>);
-            }
-        }
         return (
-
                 <ul className="table-view">
-                <Dashboard action={first} />
                 {actions}
-
                 </ul>
 
         );
@@ -113,11 +75,12 @@ var ActionList = React.createClass({
 
 });
 
+// HomePage needs to change its var name
 var HomePage = React.createClass({
     render: function () {
         return (
                 <div>
-                <Header text="BabyRoutine" back="false"/>
+                <Header text="BabyRoutine" back="true"/>
                 <div className="content">
                     <ActionList />
                 </div>

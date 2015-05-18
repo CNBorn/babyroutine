@@ -1,8 +1,10 @@
 var React = require('../vendor/react');
 
 var SubmitEat = require('./submit');
-var HomePage = require('./home');
+var EatListPage = require('./home');
 var ActionPage = require('./entity');
+var FrontPage = require('./dashboard');
+
 var router = require('./router');
 
 var App = React.createClass({
@@ -15,7 +17,10 @@ var App = React.createClass({
     },
     componentDidMount: function() {
         router.addRoute('', function() {
-            this.setState({page: <HomePage />});
+            this.setState({page: <FrontPage />});
+        }.bind(this));
+        router.addRoute('eat', function() {
+            this.setState({page: <EatListPage />});
         }.bind(this));
         router.addRoute('action/:id', function(id) {
             this.setState({page: <ActionPage actionId={id} service={actionService}/>});

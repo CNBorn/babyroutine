@@ -53,17 +53,27 @@ var EatEntryTab = React.createClass({
     render: function () {
 
         if(this.props.action) {
-            var eatSince = countdown(moment(this.props.action.createdAt),
-                                     null,
-                                     countdown.HOURS,
-                                     null,
-                                     2).toString();
+            var isSameDay = moment().isSame(moment(this.props.action.createdAt),
+                                            'day');
+            var eatSince = "";
+            var eatPrompt = "";
+            if(isSameDay) {
+                eatSince = countdown(moment(this.props.action.createdAt),
+                                         null,
+                                         countdown.HOURS,
+                                         null,
+                                         2).toString();
+                eatPrompt = 'since last time eat.';
+            } else {
+                eatPrompt = 'Haven\'t eat today.';
+            }
+
             return (
                     <li className="table-view-cell media">
                     <a className="navigate-right" href="#eat">
                     <img className="media-object pull-left" src="img/eat.png" />
                     <div className="media-body">
-                    {eatSince} since last time eat.
+                    {eatSince} {eatPrompt}
                     <p>520ml Today, 890ml Yesterday</p>
                     <p>770ml last 3days avaerge, 660ml last week avaerage. </p>
                     </div>

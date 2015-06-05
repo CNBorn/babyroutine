@@ -20,7 +20,7 @@ var getEatStatusByDayFunc = function(dayfunc, states) {
             result += parseInt(vol.substring(0, vol.length - 2));
         }
     }
-    return result + 'ml';
+    return result;
 };
 
 var GraphEntryTab = React.createClass({
@@ -98,7 +98,7 @@ var EatEntryTab = React.createClass({
                 <img className="media-object pull-left" src="img/eat.png" />
                 <div className="media-body">
                 {eatSince} {eatPrompt}
-                <p>{todayVol} Today, {yesterdayVol} Yesterday</p>
+                <p>{todayVol}ml Today, {yesterdayVol}ml Yesterday</p>
                 <p>770ml last 3days avaerge, 660ml last week avaerage. </p>
                 </div>
                 </a>

@@ -3,6 +3,24 @@ var React = require('../vendor/react');
 var Header = require('./components')['header'];
 var NavBar = require('./components')['navbar'];
 
+var isDateToday = function(d) {
+    return moment().isSame(moment(d),'day');
+};
+
+var getEatStatusByDayFunc = function(dayfunc, states) {
+    var result = '';
+    var l = states.length;
+    console.log(l);
+    console.log(states);
+    for (var i = 0; i < l; i++) {
+        console.log(l[i]);
+        if (l[i] && dayfunc(l[i].createdAt)) {
+            result += l[i].volume;
+        }
+    }
+    return result;
+};
+
 var GraphEntryTab = React.createClass({
     render: function() {
         return (
@@ -51,40 +69,40 @@ var SleepEntryTab = React.createClass({
 
 var EatEntryTab = React.createClass({
     render: function () {
+        var eatSince = "";
+        var eatPrompt = 'Haven\'t eat today.';
+        var todayvol = "";
+        if(this.props.actions) {
+            todayvol = getEatStatusByDayFunc(isDateToday, this.props.actions);
 
-        if(this.props.action) {
-            var isSameDay = moment().isSame(moment(this.props.action.createdAt),
-                                            'day');
-            var eatSince = "";
-            var eatPrompt = "";
-            if(isSameDay) {
-                eatSince = countdown(moment(this.props.action.createdAt),
+            var first = this.props.actions[0];
+            if(first){
+                if(isDateToday(first.createdAt)) {
+                    eatSince = countdown(moment(first.createdAt),
                                          null,
                                          countdown.HOURS,
                                          null,
                                          2).toString();
-                eatPrompt = 'since last time eat.';
-            } else {
-                eatPrompt = 'Haven\'t eat today.';
+                    eatPrompt = 'since last time eat.';
+                }
             }
-
-            return (
-                    <li className="table-view-cell media">
-                    <a className="navigate-right" href="#eat">
-                    <img className="media-object pull-left" src="img/eat.png" />
-                    <div className="media-body">
-                    {eatSince} {eatPrompt}
-                    <p>520ml Today, 890ml Yesterday</p>
-                    <p>770ml last 3days avaerge, 660ml last week avaerage. </p>
-                    </div>
-                    </a>
-                    </li>
-            );
-        } else {
-            return (<span />);
         }
+
+        return (
+                <li className="table-view-cell media">
+                <a className="navigate-right" href="#eat">
+                <img className="media-object pull-left" src="img/eat.png" />
+                <div className="media-body">
+                {eatSince} {eatPrompt}
+                <p>{todayvol} Today, 890ml Yesterday</p>
+                <p>770ml last 3days avaerge, 660ml last week avaerage. </p>
+                </div>
+                </a>
+                </li>
+        );
     }
 });
+
 
 var FrontPage = React.createClass({
     getInitialState: function() {
@@ -108,7 +126,7 @@ var FrontPage = React.createClass({
 
                 <ul className="table-view">
                 <li className="table-view-divider">{today}</li>
-                <EatEntryTab action={first}/>
+                <EatEntryTab actions={this.state.actions}/>
                 <SleepEntryTab />
                 <HistoryEntryTab />
                 <GraphEntryTab />

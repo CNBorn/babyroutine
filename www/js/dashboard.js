@@ -15,12 +15,6 @@ var isDateYesterday = function(d) {
     return isDateNDaysAgo(1, d);
 };
 
-var newf = isDateNDaysAgo.bind(null, 1);
-var d = new Date();
-d.setDate(d.getDate() -1);
-console.log(isDateYesterday(d));
-console.log(newf(d));
-
 var getEatStatusByDayFunc = function(dayfunc, states) {
     var result = 0;
     var l = states.length;
@@ -83,11 +77,18 @@ var EatEntryTab = React.createClass({
     render: function () {
         var eatSince = "";
         var eatPrompt = 'Haven\'t eat today.';
-        var todayVol = "", yesterdayVol = "";
+        var todayVol = 0, yesterdayVol = 0;
+        var last3dayAvgVol = 0, lastWeekAvgVol = 0;
         if(this.props.actions) {
             todayVol = getEatStatusByDayFunc(isDateToday, this.props.actions);
             yesterdayVol = getEatStatusByDayFunc(isDateYesterday,
                                                  this.props.actions);
+            var last3dayTotalVol = 0;
+            for(var d = 1; d < 4; d++){
+                last3dayTotalVol += getEatStatusByDayFunc(isDateNDaysAgo.bind(null, d),
+                                                         this.props.actions);
+            }
+            last3dayAvgVol = last3dayTotalVol / 3;
 
             var first = this.props.actions[0];
             if(first){
@@ -109,7 +110,7 @@ var EatEntryTab = React.createClass({
                 <div className="media-body">
                 {eatSince} {eatPrompt}
                 <p>{todayVol}ml Today, {yesterdayVol}ml Yesterday</p>
-                <p>770ml last 3days avaerge, 660ml last week avaerage. </p>
+                <p>{last3dayAvgVol}ml last 3-days avaerge, 660ml last week avaerage. </p>
                 </div>
                 </a>
                 </li>

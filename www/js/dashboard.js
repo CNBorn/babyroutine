@@ -27,6 +27,17 @@ var getEatStatusByDayFunc = function(dayfunc, states) {
     return result;
 };
 
+var getNDaysAverage = function(n, states) {
+    var total = 0;
+    for(var d = 1; d < (n + 1); d++){
+        total += getEatStatusByDayFunc(isDateNDaysAgo.bind(null, d),
+                                       states);
+    }
+    return Math.round(total / n);
+};
+
+
+
 var GraphEntryTab = React.createClass({
     render: function() {
         return (
@@ -63,7 +74,7 @@ var SleepEntryTab = React.createClass({
                 <div className="media-body">
                 2.5 hours since last sleep.
                 <p>5 hours Today, 12 hours Yesterday</p>
-                <p>12.5 hours last 3days avaerge, 11.9hours last week avaerage. </p>
+                <p>12.5 hours last 3days average, 11.9hours last week average. </p>
                 </div>
                 </a>
                 </li></ul>
@@ -83,12 +94,9 @@ var EatEntryTab = React.createClass({
             todayVol = getEatStatusByDayFunc(isDateToday, this.props.actions);
             yesterdayVol = getEatStatusByDayFunc(isDateYesterday,
                                                  this.props.actions);
-            var last3dayTotalVol = 0;
-            for(var d = 1; d < 4; d++){
-                last3dayTotalVol += getEatStatusByDayFunc(isDateNDaysAgo.bind(null, d),
-                                                         this.props.actions);
-            }
-            last3dayAvgVol = last3dayTotalVol / 3;
+
+            last3dayAvgVol = getNDaysAverage(3, this.props.actions);
+            lastWeekAvgVol = getNDaysAverage(7, this.props.actions);
 
             var first = this.props.actions[0];
             if(first){
@@ -110,7 +118,7 @@ var EatEntryTab = React.createClass({
                 <div className="media-body">
                 {eatSince} {eatPrompt}
                 <p>{todayVol}ml Today, {yesterdayVol}ml Yesterday</p>
-                <p>{last3dayAvgVol}ml last 3-days avaerge, 660ml last week avaerage. </p>
+                <p>{last3dayAvgVol}ml last 3-days average, {lastWeekAvgVol}ml last week average. </p>
                 </div>
                 </a>
                 </li>

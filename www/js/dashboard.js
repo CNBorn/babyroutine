@@ -7,11 +7,13 @@ var isDateToday = function(d) {
     return moment().isSame(moment(d),'day');
 };
 
+var isDateYesterday = function(d) {
+    return moment().subtract(1, 'days').isSame(moment(d), 'day');
+}
+
 var getEatStatusByDayFunc = function(dayfunc, states) {
     var result = 0;
     var l = states.length;
-    console.log(l);
-    console.log(states);
     for (var i = 0; i < l; i++) {
         if (states[i] && dayfunc(states[i].createdAt)) {
             var vol = states[i].props.volume;
@@ -71,9 +73,11 @@ var EatEntryTab = React.createClass({
     render: function () {
         var eatSince = "";
         var eatPrompt = 'Haven\'t eat today.';
-        var todayvol = "";
+        var todayVol = "", yesterdayVol = "";
         if(this.props.actions) {
             todayVol = getEatStatusByDayFunc(isDateToday, this.props.actions);
+            yesterdayVol = getEatStatusByDayFunc(isDateYesterday,
+                                                 this.props.actions);
 
             var first = this.props.actions[0];
             if(first){
@@ -94,7 +98,7 @@ var EatEntryTab = React.createClass({
                 <img className="media-object pull-left" src="img/eat.png" />
                 <div className="media-body">
                 {eatSince} {eatPrompt}
-                <p>{todayVol} Today, 890ml Yesterday</p>
+                <p>{todayVol} Today, {yesterdayVol} Yesterday</p>
                 <p>770ml last 3days avaerge, 660ml last week avaerage. </p>
                 </div>
                 </a>

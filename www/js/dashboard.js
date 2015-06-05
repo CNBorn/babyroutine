@@ -7,9 +7,19 @@ var isDateToday = function(d) {
     return moment().isSame(moment(d),'day');
 };
 
+var isDateNDaysAgo = function(n, d) {
+    return moment().subtract(n, 'days').isSame(moment(d), 'day');
+};
+
 var isDateYesterday = function(d) {
-    return moment().subtract(1, 'days').isSame(moment(d), 'day');
-}
+    return isDateNDaysAgo(1, d);
+};
+
+var newf = isDateNDaysAgo.bind(null, 1);
+var d = new Date();
+d.setDate(d.getDate() -1);
+console.log(isDateYesterday(d));
+console.log(newf(d));
 
 var getEatStatusByDayFunc = function(dayfunc, states) {
     var result = 0;

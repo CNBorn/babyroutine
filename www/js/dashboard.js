@@ -18,10 +18,14 @@ var isDateYesterday = function(d) {
 var getEatStatusByDayFunc = function(dayfunc, states) {
     var result = 0;
     var l = states.length;
+    var parseVolume = function(volumeString) {
+        // Removes 'ml' sign and convert volume to Int.
+        return parseInt(volumeString.substring(0, volumeString.length - 2));
+    };
     for (var i = 0; i < l; i++) {
         if (states[i] && dayfunc(states[i].createdAt)) {
             var vol = states[i].props.volume;
-            result += parseInt(vol.substring(0, vol.length - 2));
+            result += parseVolume(vol);
         }
     }
     return result;

@@ -8,17 +8,17 @@ var isDateToday = function(d) {
 };
 
 var getEatStatusByDayFunc = function(dayfunc, states) {
-    var result = '';
+    var result = 0;
     var l = states.length;
     console.log(l);
     console.log(states);
     for (var i = 0; i < l; i++) {
-        console.log(l[i]);
-        if (l[i] && dayfunc(l[i].createdAt)) {
-            result += l[i].volume;
+        if (states[i] && dayfunc(states[i].createdAt)) {
+            var vol = states[i].props.volume;
+            result += parseInt(vol.substring(0, vol.length - 2));
         }
     }
-    return result;
+    return result + 'ml';
 };
 
 var GraphEntryTab = React.createClass({
@@ -73,7 +73,7 @@ var EatEntryTab = React.createClass({
         var eatPrompt = 'Haven\'t eat today.';
         var todayvol = "";
         if(this.props.actions) {
-            todayvol = getEatStatusByDayFunc(isDateToday, this.props.actions);
+            todayVol = getEatStatusByDayFunc(isDateToday, this.props.actions);
 
             var first = this.props.actions[0];
             if(first){
@@ -94,7 +94,7 @@ var EatEntryTab = React.createClass({
                 <img className="media-object pull-left" src="img/eat.png" />
                 <div className="media-body">
                 {eatSince} {eatPrompt}
-                <p>{todayvol} Today, 890ml Yesterday</p>
+                <p>{todayVol} Today, 890ml Yesterday</p>
                 <p>770ml last 3days avaerge, 660ml last week avaerage. </p>
                 </div>
                 </a>

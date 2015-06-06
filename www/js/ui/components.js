@@ -1,4 +1,4 @@
-var React = require('../vendor/react');
+var React = require('../../vendor/react');
 
 var Header = React.createClass({
     render: function () {

@@ -1,4 +1,4 @@
-var React = require('../vendor/react');
+var React = require('../../vendor/react');
 
 var Header = require('./components')['header'];
 var NavBar = require('./components')['navbar'];

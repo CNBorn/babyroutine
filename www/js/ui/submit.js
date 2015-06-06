@@ -1,15 +1,15 @@
-var React = require('../vendor/react');
+var React = require('../../vendor/react');
 
 var Header = require('./components')['header'];
 var NavBar = require('./components')['navbar'];
 
-var router = require('./router');
+var router = require('../../vendor/router');
 
 var SubmitEat = React.createClass({
     getInitialState: function() {
         return {volume: 90,
                 duration: 5,
-                time: Date(),
+                time: Date()
                };
     },
     handleSubmit: function(e) {

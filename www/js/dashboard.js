@@ -55,13 +55,13 @@ var GraphEntryTab = React.createClass({
     }
 });
 
-var HistoryEntryTab = React.createClass({
+var ReportEntryTab = React.createClass({
     render: function() {
         return (
                 <ul className="table-view">
                 <li className="table-view-cell">
                 <a className="navigate-right" href="#sleep">
-                View History
+                View Report
                 </a>
                 </li></ul>
         );
@@ -155,7 +155,7 @@ var FrontPage = React.createClass({
                 <li className="table-view-divider">{today}</li>
                 <EatEntryTab actions={this.state.actions}/>
                 <SleepEntryTab />
-                <HistoryEntryTab />
+                <ReportEntryTab />
                 <GraphEntryTab />
                 </ul>
 

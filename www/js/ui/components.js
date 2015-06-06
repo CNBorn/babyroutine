@@ -5,7 +5,7 @@ var Header = React.createClass({
         return (
                 <header className="bar bar-nav">
                 <a href="javascript:history.back();" className={"icon icon-left-nav pull-left" + (this.props.back==="true"?"":" hidden")}></a>
-                <a className="icon icon-gear pull-right"></a>
+                <a href="#settings" className="icon icon-gear pull-right"></a>
                 <h1 className="title">{this.props.text}</h1>
                 </header>
         );

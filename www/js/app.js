@@ -4,6 +4,7 @@ var SubmitEat = require('./ui/submit');
 var EatLogPage = require('./ui/eatlog');
 var ActionPage = require('./ui/entity');
 var FrontPage = require('./ui/dashboard');
+var SettingsPage = require('./ui/settings');
 
 var router = require('../vendor/router');
 
@@ -27,6 +28,9 @@ var App = React.createClass({
         }.bind(this));
         router.addRoute('addEat', function() {
             this.setState({page: <SubmitEat />});
+        }.bind(this));
+        router.addRoute('settings', function() {
+            this.setState({page: <SettingsPage />});
         }.bind(this));
         router.start();
     },

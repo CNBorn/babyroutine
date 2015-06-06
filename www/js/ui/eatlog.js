@@ -75,8 +75,7 @@ var ActionList = React.createClass({
 
 });
 
-// HomePage needs to change its var name
-var HomePage = React.createClass({
+var EatLogPage = React.createClass({
     render: function () {
         return (
                 <div>
@@ -84,10 +83,10 @@ var HomePage = React.createClass({
                 <div className="content">
                     <ActionList />
                 </div>
-                <NavBar page='home'/>
+                <NavBar />
                 </div>
         );
     }
 });
 
-module.exports = HomePage;
+module.exports = EatLogPage;

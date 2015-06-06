@@ -1,7 +1,7 @@
 var React = require('../vendor/react');
 
 var SubmitEat = require('./ui/submit');
-var EatListPage = require('./ui/home');
+var EatLogPage = require('./ui/eatlog');
 var ActionPage = require('./ui/entity');
 var FrontPage = require('./ui/dashboard');
 
@@ -20,7 +20,7 @@ var App = React.createClass({
             this.setState({page: <FrontPage />});
         }.bind(this));
         router.addRoute('eat', function() {
-            this.setState({page: <EatListPage />});
+            this.setState({page: <EatLogPage />});
         }.bind(this));
         router.addRoute('action/:id', function(id) {
             this.setState({page: <ActionPage actionId={id} service={actionService}/>});

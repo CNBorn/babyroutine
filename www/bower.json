@@ -20,6 +20,8 @@
     "jquery": "~2.1.4",
     "uuid": "~2.0.1",
     "moment": "~2.10.3",
-    "countdown": "~2.1.0"
+    "countdown": "~2.1.0",
+    "router.js": "~1.0.3",
+    "lostorage": "https://github.com/js-coder/lostorage.js"
   }
 }

@@ -1,0 +1,25 @@
+{
+  "name": "babyroutine",
+  "version": "0.0.0",
+  "authors": [
+    "CNBorn <CNBorn@hotmail.com>"
+  ],
+  "moduleType": [
+    "amd"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "~0.13.3",
+    "jquery": "~2.1.4",
+    "uuid": "~2.0.1",
+    "moment": "~2.10.3",
+    "countdown": "~2.1.0"
+  }
+}

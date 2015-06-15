@@ -1,3 +1,5 @@
+var $ = require('jquery');
+
 actionService = (function () {
 
     var findById = function (id) {
@@ -69,3 +71,5 @@ actionService = (function () {
     };
 
 }());
+
+module.exports = actionService;

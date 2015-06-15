@@ -1,5 +1,5 @@
-var React = require('../../vendor/react');
-
+var React = require('react');
+var moment = require('moment');
 var Header = require('./components')['header'];
 var NavBar = require('./components')['navbar'];
 

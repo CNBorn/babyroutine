@@ -3,9 +3,11 @@ var source = require('vinyl-source-stream');
 var browserify = require('browserify');
 var watchify = require('watchify');
 var reactify = require('reactify');
+var debowerify = require('debowerify');
 
 var path = {
-    STATIC_DEPS: ['js/**/*.*', 'index.html', 'ratchet/**/*.*', 'css/**/*.*',
+    STATIC_DEPS: ['bower_components/**/*.*',
+                  'js/**/*.*', 'index.html', 'ratchet/**/*.*', 'css/**/*.*',
                   'img/**/*.*', 'vendor/**/*.*'],
     OUT: 'build.js',
     DEST: 'dist',
@@ -22,7 +24,7 @@ gulp.task('watch', function() {
 
     var watcher  = watchify(browserify({
         entries: [path.ENTRY_POINT],
-        transform: [reactify],
+        transform: [reactify, debowerify],
         debug: true,
         cache: {}, packageCache: {}, fullPaths: true
     }));

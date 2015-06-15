@@ -1,4 +1,4 @@
-var React = require('../vendor/react');
+var React = require('react');
 
 var SubmitEat = require('./ui/submit');
 var EatLogPage = require('./ui/eatlog');
@@ -6,7 +6,7 @@ var ActionPage = require('./ui/entity');
 var FrontPage = require('./ui/dashboard');
 var SettingsPage = require('./ui/settings');
 
-var router = require('../vendor/router');
+var router = require('../vendor/router.js');
 
 var App = React.createClass({
     getInitialState: function() {

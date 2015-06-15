@@ -1,9 +1,9 @@
-var React = require('../../vendor/react');
+var React = require('react');
 
 var Header = require('./components')['header'];
 var NavBar = require('./components')['navbar'];
 
-var router = require('../../vendor/router');
+var router = require('router.js');
 
 var SubmitEat = React.createClass({
     getInitialState: function() {

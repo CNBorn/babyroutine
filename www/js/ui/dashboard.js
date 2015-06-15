@@ -2,6 +2,7 @@ var React = require('react');
 var moment = require('moment');
 var Header = require('./components')['header'];
 var NavBar = require('./components')['navbar'];
+var actionService = require('../data.js');
 
 var isDateToday = function(d) {
     return moment().isSame(moment(d),'day');

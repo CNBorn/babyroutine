@@ -1,4 +1,5 @@
 var $ = require('jquery');
+var uuid = require('uuid');
 
 actionService = (function () {
 

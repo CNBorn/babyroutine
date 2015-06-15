@@ -3,7 +3,7 @@ var React = require('react');
 var Header = require('./components')['header'];
 var NavBar = require('./components')['navbar'];
 
-
+var moment = require('moment');
 var ActionPage = React.createClass({
     getInitialState: function() {
         return {action: {}};

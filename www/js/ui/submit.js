@@ -4,8 +4,8 @@ var Header = require('./components')['header'];
 var NavBar = require('./components')['navbar'];
 
 var actionService = require('../data.js');
-var router = require('router.js');
-
+var router = require('../../vendor/router.js');
+var moment = require('moment');
 var SubmitEat = React.createClass({
     getInitialState: function() {
         return {volume: 90,

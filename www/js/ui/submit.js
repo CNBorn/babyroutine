@@ -3,6 +3,7 @@ var React = require('react');
 var Header = require('./components')['header'];
 var NavBar = require('./components')['navbar'];
 
+var actionService = require('../data.js');
 var router = require('router.js');
 
 var SubmitEat = React.createClass({

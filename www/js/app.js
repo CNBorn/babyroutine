@@ -5,7 +5,7 @@ var EatLogPage = require('./ui/eatlog');
 var ActionPage = require('./ui/entity');
 var FrontPage = require('./ui/dashboard');
 var SettingsPage = require('./ui/settings');
-
+var actionService = require('./data.js');
 var router = require('../vendor/router.js');
 
 var App = React.createClass({
@@ -39,5 +39,6 @@ var App = React.createClass({
     }
 
 });
+
 
 module.exports = App;

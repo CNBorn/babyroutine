@@ -7,6 +7,6 @@
     <author email="CNBorn@hotmail.com" href="http://cnborn.net">
         Tyler Xing
     </author>
-    <content src="index.html" />
+    <content src="dist/index.html" />
     <access origin="*" />
 </widget>

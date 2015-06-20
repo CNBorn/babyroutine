@@ -8,7 +8,7 @@ var moment = require('moment');
 
 var ActionListItem = React.createClass({
     handleRemove: function(id) {
-        actionService.removeById(id);
+        this.props.onDelete(id);
     },
 
     render: function () {
@@ -58,11 +58,21 @@ var ActionList = React.createClass({
         var node = this.getDOMNode();
         node.scrollTop = node.scrollHeight;
     },
-
+    delItem: function(id) {
+        //TODO: how to sync between actionService and state?
+        actionService.removeById(id);
+        var newstate = [];
+        this.state.actions.map(function(item) {
+            if(item.id !== id) { newstate.push(item); }
+        });
+        this.setState({actions: newstate});
+    },
     render: function () {
+        var delFunc = this.delItem;
         var actions = this.state.actions.map(function (action, i) {
             return (
                     <ActionListItem key={action.id} action={action}
+                     onDelete={delFunc}
                     />
             );
         });

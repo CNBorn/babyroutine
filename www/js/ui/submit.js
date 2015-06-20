@@ -29,6 +29,7 @@ var SubmitEat = React.createClass({
         this.setState({time: moment().format('YYYY-MM-DD') + ' ' + event.target.value});
     },
     render: function () {
+        var timevalue = moment(new Date(this.state.time)).format('HH:mm');
         return (
                 <div>
                 <Header text="Submit Eat" back="true" />
@@ -37,7 +38,7 @@ var SubmitEat = React.createClass({
                         <div className="input-row">
                 <label>Time</label>
                 <input id="time" type="time" step="60"
-                value={moment(this.state.time).format('HH:mm')}
+                value={timevalue}
                 onChange={this.handleTimeChange}/>
                 </div>
 

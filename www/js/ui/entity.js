@@ -28,7 +28,7 @@ var ActionPage = React.createClass({
                 <ul className="table-view">
                 <li className="table-view-cell media">
                 <img className="media-object big pull-left" src={"img/" + this.state.action.kindName + ".png"} />
-                <h1>{moment(this.state.action.createdAt).format('HH:mm')} &nbsp;
+                <h1>{moment(new Date(this.state.action.createdAt)).format('HH:mm')} &nbsp;
             {propsVolume} &nbsp; {propsDuration}
             </h1>
 

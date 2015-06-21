@@ -3,7 +3,6 @@ var moment = require('moment');
 var Header = require('./components')['header'];
 var NavBar = require('./components')['navbar'];
 var actionService = require('../data.js');
-var countdown = require('countdown');
 
 var isDateToday = function(d) {
     return moment().isSame(moment(d),'day');
@@ -107,11 +106,10 @@ var EatEntryTab = React.createClass({
             var first = this.props.actions[0];
             if(first){
                 if(isDateToday(first.createdAt)) {
-                    /*eatSince = countdown(moment(new Date(first.createdAt)),
-                                         null,
-                                         countdown.HOURS,
-                                         null,
-                                         2).toString();*/
+                    eatSince = countdown(null,
+                                         new Date(first.createdAt),
+                                         countdown.HOURS|countdown.MINUTES,
+                                         2).toString();
                     eatPrompt = 'since last time eat.';
                 }
             }

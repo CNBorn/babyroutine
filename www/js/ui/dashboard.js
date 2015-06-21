@@ -24,7 +24,7 @@ var getEatStatusByDayFunc = function(dayfunc, states) {
         return parseInt(volumeString.substring(0, volumeString.length - 2));
     };
     for (var i = 0; i < l; i++) {
-        if (states[i] && dayfunc(states[i].createdAt)) {
+        if (states[i] && dayfunc(new Date(states[i].createdAt))) {
             var vol = states[i].props.volume;
             result += parseVolume(vol);
         }

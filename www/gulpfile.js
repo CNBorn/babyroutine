@@ -1,9 +1,11 @@
-var gulp = require('gulp');
-var source = require('vinyl-source-stream');
-var browserify = require('browserify');
-var watchify = require('watchify');
-var reactify = require('reactify');
-var debowerify = require('debowerify');
+var gulp = require('gulp'),
+    source = require('vinyl-source-stream'),
+    browserify = require('browserify'),
+    watchify = require('watchify'),
+    reactify = require('reactify'),
+    debowerify = require('debowerify'),
+    uglify = require('gulp-uglify'),
+    buffer = require('vinyl-buffer');
 
 var path = {
     STATIC_DEPS: ['bower_components/**/*.*',
@@ -51,4 +53,19 @@ gulp.task('webserver', function() {
     });
 });
 
+
+gulp.task('js:min', function() {
+    return browserify({
+        entries: [path.ENTRY_POINT],
+        transform: [reactify, debowerify],
+        debug:false
+    })
+        .bundle()
+        .pipe(source(path.OUT))
+        .pipe(buffer())
+        .pipe(uglify())
+        .pipe(gulp.dest(path.DEST));
+})
+
 gulp.task('default', ['copy', 'webserver','watch']);
+gulp.task('distribution', ['copy', 'js:min']);

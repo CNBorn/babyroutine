@@ -14,7 +14,7 @@ var ActionListItem = React.createClass({
     render: function () {
         var propsVolume, propsDuration = '';
         var today = moment();
-        itemMoment = moment(this.props.action.createdAt);
+        itemMoment = moment(new Date(this.props.action.createdAt));
         if (today.startOf('day').isSame(itemMoment.startOf('day'))) {
             timeDiff = '';
         } else {
@@ -30,7 +30,7 @@ var ActionListItem = React.createClass({
                 <a href={"#action/" + this.props.action.id}>
                 <img className="media-object big pull-left" src={"img/" + this.props.action.kindName.toLowerCase() + ".png"} />
                 <div className="media-body">
-                    <h1>{moment(this.props.action.createdAt).format('HH:mm')} &nbsp;
+                    <h1>{moment(new Date(this.props.action.createdAt)).format('HH:mm')} &nbsp;
                     {propsVolume}
                     </h1>
                     {timeDiff}

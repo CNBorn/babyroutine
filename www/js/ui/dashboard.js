@@ -107,11 +107,11 @@ var EatEntryTab = React.createClass({
             var first = this.props.actions[0];
             if(first){
                 if(isDateToday(first.createdAt)) {
-                    eatSince = countdown(moment(first.createdAt),
+                    /*eatSince = countdown(moment(new Date(first.createdAt)),
                                          null,
                                          countdown.HOURS,
                                          null,
-                                         2).toString();
+                                         2).toString();*/
                     eatPrompt = 'since last time eat.';
                 }
             }
